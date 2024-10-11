@@ -24,7 +24,8 @@ const startServer = async () => {
     app.use("/api/auth", routerAuth);
     app.use("/api/object", routerObject);
     app.use("api/price", routerPrice)
-    app.listen(5000, () => {
+
+    app.listen(5000, "0.0.0.0", () => {
       console.log("All right!")
     })
 
