@@ -25,7 +25,7 @@ const startServer = async () => {
     app.use("/api/object", routerObject);
     app.use("api/price", routerPrice);
     const http = require("http");
-    const server = http.createServer(app).listen(5000, "0.0.0.0", () => {
+    app.listen(5000, "0.0.0.0", () => {
       console.log("Connected!");
     });
 
