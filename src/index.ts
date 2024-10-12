@@ -17,17 +17,13 @@ const startServer = async () => {
     const app = express();
     app.use(express.json());
     app.use(cookieParser());
-    app.use(cors({
-      origin: ['http://localhost:3000'],
-      credentials: true,
-    }));
     app.use("/api/auth", routerAuth);
     app.use("/api/object", routerObject);
-    app.use("api/price", routerPrice)
-
-    app.listen(5000, "0.0.0.0", () => {
-      console.log("All right!")
-    })
+    app.use("api/price", routerPrice);
+    const http = require("http");
+    const server = http.createServer(app).listen(3000, "0.0.0.0", () => {
+      console.log("Connected!");
+    });
 
     const updateAuction = async () => {
       const BidsRepository = AppDataSource.getRepository(Bids);

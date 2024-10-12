@@ -20,3 +20,9 @@ export const getPrice = async (req, res) => {
     return res.status(400).send(error.message);
   }
 };
+
+export const test = async (req, res) => {
+  // const price = await PriceService.setPrice(req.body);
+  // console.log(req.body)
+  return res.send("Дошел!");
+};
