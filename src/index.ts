@@ -25,7 +25,7 @@ const startServer = async () => {
     app.use("/api/object", routerObject);
     app.use("/api/price", routerPrice);
 
-    app.listen(5000, () => {
+    app.listen(5000,"127.0.0.1", () => {
       console.log("Connected!");
     });
 
