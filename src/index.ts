@@ -30,8 +30,8 @@ const startServer = async () => {
 
     // Настройки для SSL
     const sslOptions = {
-      key: fs.readFileSync(path.join(__dirname, 'certs', 'server.key')),   // путь к приватному ключу
-      cert: fs.readFileSync(path.join(__dirname, 'certs', 'server.cert')), // путь к сертификату
+      key: fs.readFileSync(path.join(__dirname, 'server.key')),   // путь к приватному ключу
+      cert: fs.readFileSync(path.join(__dirname, 'server.cert')), // путь к сертификату
     };
 
     // Запуск HTTPS сервера
