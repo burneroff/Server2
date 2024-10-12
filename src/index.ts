@@ -7,6 +7,9 @@ import { routerObject } from "./routes/routerObject";
 import { routerPrice } from "./routes/routerPrice";
 import { CronJob } from "cron";
 import { Bids } from "./entities/Bids";
+import https from 'https';
+import fs from 'fs';
+import path from 'path';
 
 const startServer = async () => {
   try {
@@ -23,10 +26,17 @@ const startServer = async () => {
 
     app.use("/api/auth", routerAuth);
     app.use("/api/object", routerObject);
-    app.use("/api/price", routerPrice);  // исправлено
+    app.use("/api/price", routerPrice);
 
-    app.listen(5000, () => {
-      console.log("Connected!");
+    // Настройки для SSL
+    const sslOptions = {
+      key: fs.readFileSync(path.join(__dirname, 'certs', 'server.key')),   // путь к приватному ключу
+      cert: fs.readFileSync(path.join(__dirname, 'certs', 'server.cert')), // путь к сертификату
+    };
+
+    // Запуск HTTPS сервера
+    https.createServer(sslOptions, app).listen(443, () => {
+      console.log("Connected with HTTPS on port 443!");
     });
 
     const updateAuction = async () => {
@@ -56,7 +66,8 @@ const startServer = async () => {
       }
     };
 
-    const job = new CronJob('*/5 * * * *', updateAuction, null, true, 'Europe/Minsk');  // исправлено
+    // Cron job для обновления аукционов каждые 5 минут
+    const job = new CronJob('*/5 * * * *', updateAuction, null, true, 'Europe/Minsk');
 
   } catch (err) {
     console.error("Error during Server initialization:", err);
