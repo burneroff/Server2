@@ -17,11 +17,15 @@ const startServer = async () => {
     const app = express();
     app.use(express.json());
     app.use(cookieParser());
+    app.use(cors({
+      origin: '*',
+      credentials: true,
+    }));
     app.use("/api/auth", routerAuth);
     app.use("/api/object", routerObject);
     app.use("api/price", routerPrice);
     const http = require("http");
-    const server = http.createServer(app).listen(3000, "0.0.0.0", () => {
+    const server = http.createServer(app).listen(5000, "0.0.0.0", () => {
       console.log("Connected!");
     });
 
