@@ -25,8 +25,8 @@ const startServer = async () => {
     app.use("/api/object", routerObject);
     app.use("/api/price", routerPrice);
 
-    app.listen(5000,"127.0.0.1", () => {
-      console.log("Connected!");
+    app.listen(5000, "0.0.0.0", () => {
+      console.log("Connected on port 5000!");
     });
 
     const updateAuction = async () => {
