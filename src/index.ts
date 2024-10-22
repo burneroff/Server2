@@ -18,7 +18,7 @@ const startServer = async () => {
     app.use(cookieParser());
     
     app.use(cors({
-      origin: 'https://locatorcost.vercel.app', // Укажите разрешенный источник
+      origin: ['https://locatorcost.vercel.app', 'http://localhost:3000'], // Укажите разрешенный источник
       credentials: true, // Разрешите учетные данные
     }));
 
