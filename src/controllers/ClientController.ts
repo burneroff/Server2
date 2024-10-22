@@ -43,16 +43,14 @@ export const login = async (req, res) => {
 };
 
 export const authCheck = async (req, res) => {
-  try {
-    let client = await ClientService.findByEmail(req.body.email);
-    if (client) {
-      return res.send({ fio: client.fio, email: client.email, role: "Клиент" });
-    } else {
-      return res.status(401).send("Пользователь не авторизирован!");
-    }
-  } catch (error) {
-    console.error(error);
-    return res.status(500).send("Произошла ошибка на сервере");
-  }
+  const token = req.cookies.auth;
+  if (token) {
+    jwt.verify(token, "rissecretkey", (err, data) => {
+      if (err) return res.status(403).send("Токен не валиден!");
+       if (data.role === "Клиент")
+        return res.send({ id: data.id, role: data.role });
+    });
+  } else return res.status(401).send("Пользователь не авторизирован!");
 };
+
  
