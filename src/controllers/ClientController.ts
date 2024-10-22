@@ -48,7 +48,7 @@ export const authCheck = async (req, res) => {
     jwt.verify(token, "rissecretkey", (err, data) => {
       if (err) return res.status(403).send("Токен не валиден!");
        if (data.role === "Клиент")
-        return res.send({ id: data.id, role: data.role });
+        return res.send({ fio: data.fio, email: data.email });
     });
   } else return res.status(401).send("Пользователь не авторизирован!");
 };
