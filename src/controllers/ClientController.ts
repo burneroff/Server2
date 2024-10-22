@@ -46,7 +46,7 @@ export const authCheck = async (req, res) => {
   try {
     let client = await ClientService.findByEmail(req.body.email);
     if (client) {
-      return res.send({ fio: client.fio, email: client.email });
+      return res.send({ fio: client.fio, email: client.email, role: "Клиент" });
     } else {
       return res.status(401).send("Пользователь не авторизирован!");
     }
