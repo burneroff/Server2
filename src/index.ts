@@ -60,7 +60,7 @@ const startServer = async () => {
       }
     };
     
-    const job = new CronJob('*/5 * * * *', updateAuction, null, true, 'Europe/Minsk');
+    // const job = new CronJob('*/5 * * * *', updateAuction, null, true, 'Europe/Minsk');
 
   } catch (err) {
     console.error("Error during Server initialization:", err);
