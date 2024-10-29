@@ -11,6 +11,10 @@ export const registration = async (req, res) => {
   }
 };
 
+export const logout = async (req, res) => {
+  return res.clearCookie("auth", { httpOnly: true }).end();
+};
+
 export const login = async (req, res) => {
   let client = await ClientService.findByEmail(req.body.email);
   if (client) {

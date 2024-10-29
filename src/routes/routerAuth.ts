@@ -5,3 +5,4 @@ export const routerAuth = express.Router();
 routerAuth.post("/login", ClientController.login);
 routerAuth.post("/registration", ClientController.registration);
 routerAuth.get("/authCheck", ClientController.authCheck);
+routerAuth.get("/logout", ClientController.logout);
