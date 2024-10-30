@@ -6,13 +6,13 @@ export class LocatorObject {
     @PrimaryColumn()
     id: string;
 
-    @Column()
+    @Column({ nullable: true })
     type_ad: string;
 
-    @Column()
+    @Column({ nullable: true })
     type_object: string;
 
-    @Column()
+    @Column({ nullable: true })
     address: string;
 
     @Column({ nullable: true })
